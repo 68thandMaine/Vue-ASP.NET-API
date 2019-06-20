@@ -4,29 +4,33 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Contracts;
+using LoggerService;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AccountOwnerServer.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    [ApiController]
+    public class ValuesController : ControllerBase
     {
         private ILoggerManager _logger;
+
         public ValuesController(ILoggerManager logger)
+        {
+            _logger = logger;
+        }
+        // GET api/values
+        [HttpGet]
+        public IEnumerable<string> Get()
         {
             _logger.LogInfo("Here is info message from our values controller.");
             _logger.LogDebug("Here is debug message from our values controller.");
             _logger.LogWarn("Here is warn message from our values controller.");
             _logger.LogError("Here is error message from our values controller.");
-            _logger = logger;
-        }
 
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
             return new string[] { "value1", "value2" };
         }
+
 
         // GET api/values/5
         [HttpGet("{id}")]
