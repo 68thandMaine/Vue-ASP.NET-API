@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Folder Include="Extensions\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LoggerService\LoggerService.csproj" />
