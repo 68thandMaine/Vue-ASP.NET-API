@@ -1,15 +1,24 @@
-﻿using System;
+﻿
+using System;
 using Contracts;
 using Entities;
 using Entities.Models;
+using System.Collections.Generic;
 
 namespace Repository
 {
-    public class AccountRepository : RepositoryBase<Account>, IAccountRepository
+    public class OwnerRepository : RepositoryBase<Owner>, IOwnerRepository
     {
-        public AccountRepository(RepositoryContext repositoryContext)
-        : base(repositoryContext)
+        public OwnerRepository(RepositoryContext repositoryContext)
+            : base(repositoryContext)
         {
+        }
+
+        public IEnumerable<Owner> GetAllOwners()
+        {
+            return FindAll()
+                .OrderBy(ow => ow.Name)
+                .ToList();
         }
     }
 }
