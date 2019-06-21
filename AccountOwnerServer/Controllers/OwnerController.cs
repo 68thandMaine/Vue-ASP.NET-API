@@ -48,7 +48,7 @@ namespace AccountOwnerServer.Controllers
             {
                 var owner = _repository.Owner.GetOwnerById(id);
 
-                if (owner.Id.Equals(Guid.Empty)) ;
+                if (owner.Id.Equals(Guid.Empty))
                 {
                     _logger.LogError($"Owner with id: {id}, hasn't been found in db.");
                     return NotFound();
